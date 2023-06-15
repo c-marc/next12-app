@@ -1,5 +1,6 @@
 import axios from "axios";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home({ data }) {
   return (
@@ -9,12 +10,15 @@ export default function Home({ data }) {
         {data.results.map((movie) => {
           return (
             <article key={movie.id}>
-              <p>{movie.title}</p>
+              <Link href={`/movies/${movie.id}`}>
+                <p>{movie.title}</p>
+              </Link>
               <Image
-                src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+                src={`https://image.tmdb.org/t/p/original${movie.poster_path.original}`}
                 alt="..."
-                width={40}
-                height={40}
+                width={400}
+                height={400}
+                className="w-40"
               />
             </article>
           );
